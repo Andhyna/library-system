@@ -40,7 +40,7 @@ library-system/
 ├── config/           # Application configuration files
 ├── database/         # Database migrations, seeders, and factories
 ├── public/           # Entry point (index.php) and front-end assets
-├── resources/        # Views (Blade templates), CSS, and JS source files
+├── resources/        # Views (Blade templates), CSS, and JS source 
 ├── routes/           # Application route definitions (web.php, console.php)
 ├── storage/          # Compiled templates, file sessions, and logs
 ├── .env              # Environment configuration settings
