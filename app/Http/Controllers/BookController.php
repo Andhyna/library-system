@@ -12,7 +12,7 @@ class BookController extends Controller
             [
                 'id' => 1,
                 'judul' => 'Pemrograman Web dengan Laravel',
-                'penulis' => 'Budi Santoso',
+                'penulis' => 'Billy Ibrahim Hasbi',
                 'tahun_terbit' => 2024,
                 'stok' => 10,
             ],
