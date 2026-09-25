@@ -18,13 +18,13 @@
         <tbody>
             @foreach ($books as $book)
                 <tr>
-                    <td>{{ $book['id'] }}</td>
-                    <td>{{ $book['judul'] }}</td>
-                    <td>{{ $book['penulis'] }}</td>
-                    <td>{{ $book['tahun_terbit'] }}</td>
-                    <td>{{ $book['stok'] }}</td>
+                    <td>{{ $book->id }}</td>
+                    <td>{{ $book->title }}</td>
+                    <td>{{ $book->author }}</td>
+                    <td>{{ $book->year }}</td>
+                    <td>{{ $book->stock }}</td>
                     <td>
-                        @if ($book['stok'] > 0)
+                        @if ($book->stock > 0)
                             <span class="status-tersedia">Tersedia</span>
                         @else
                             <span class="status-habis">Stok Habis</span>
