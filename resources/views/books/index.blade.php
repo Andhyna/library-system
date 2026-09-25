@@ -7,9 +7,9 @@
     <ul>
         @foreach ($books as $book)
             <li>
-                <strong>{{ $book->title }}</strong> - {{ $book->author }} ({{ $book->year }}) |
+                <strong>{{ $book->title }}</strong><br>
+                Penulis: {{ $book->author }}<br>
                 Stok: {{ $book->stock }}
-                [{{ $book->stock > 0 ? 'Tersedia' : 'Stok Habis' }}]
             </li>
         @endforeach
     </ul>
