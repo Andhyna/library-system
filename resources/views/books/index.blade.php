@@ -4,7 +4,7 @@
 
 @section('content')
     <h2>Daftar Buku</h2>
-    <table>
+    <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
                 <th>ID</th>

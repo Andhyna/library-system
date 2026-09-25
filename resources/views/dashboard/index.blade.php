@@ -6,7 +6,7 @@
     <h2>{{ $app['judul'] }}</h2>
     <p>{{ $app['deskripsi'] }}</p>
 
-    <h3 style="margin-top: 30px;">Statistik</h3>
+    <h3>Statistik</h3>
     <div class="stat-box">
         <h3>{{ $statistik['jumlah_buku'] }}</h3>
         <p>Total Buku</p>
