@@ -7,8 +7,10 @@
     <ul>
         @foreach ($books as $book)
             <li>
-                <strong>{{ $book->title }}</strong><br>
+                ID: {{ $book->id }}<br>
+                Judul: {{ $book->title }}<br>
                 Penulis: {{ $book->author }}<br>
+                Tahun Terbit: {{ $book->year }}<br>
                 Stok: {{ $book->stock }}
             </li>
         @endforeach
