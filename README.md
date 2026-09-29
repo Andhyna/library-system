@@ -15,9 +15,9 @@
 
 ## Description
 
-This repository contains a simple Library Information System developed with the Laravel framework. It is part of the Web Framework Programming course (SYS61645) and covers Laravel environment setup, basic MVC architecture, and Blade templating with a shared master layout.
+This repository contains a simple Library Information System developed with the Laravel framework. It is part of the Web Framework Programming course (SYS61645) and covers Laravel environment setup, basic MVC architecture, Blade templating, and Eloquent database integration.
 
-At the Pertemuan 6 stage the application relies entirely on dummy array data inside the controllers. No database, migration, or model is used yet.
+At the Pertemuan 7 stage the book list and detail are loaded from the database using Eloquent ORM (`books` migration, `Book` model, and `BookSeeder`), while categories and members use controller array data.
 
 ---
 
@@ -34,17 +34,17 @@ All routes use the array syntax `[ControllerClass::class, 'method']` and are pai
 | `/categories` | `CategoryController@index` | `resources/views/categories/index.blade.php` | Category list |
 | `/members` | `MemberController@index` | `resources/views/members/index.blade.php` | Member list |
 
-The book list uses `@foreach` to render each row and `@if` / `@else` to mark availability based on the stock value. A book is shown as available when stock is greater than zero and as out of stock otherwise.
+The book list uses `@foreach` to render each item with the id, title, author, publication year, and stock. Books are queried with `Book::all()` and the detail page uses `Book::findOrFail($id)`.
 
 ---
 
 ## Data Source
 
-Every list is served from a dummy array defined directly in the controller. The fields are:
+Books are read from the `books` table through the `Book` model. Categories and members are still served from a dummy array defined directly in the controller. The fields are:
 
 | Entity | Fields |
 | :--- | :--- |
-| Books | id, judul, penulis, tahun_terbit, stok |
+| Books | id, title, author, year, stock |
 | Categories | id, nama, deskripsi |
 | Members | id, nama, email, no_hp |
 
@@ -57,8 +57,9 @@ Every list is served from a dummy array defined directly in the controller. The 
 | PHP | 8.2 or higher | Programming Language |
 | Composer | 2.0 or higher | Dependency Manager |
 | Laravel | 11.x | PHP Web Framework |
+| MySQL / MariaDB | 10.4 or higher | Database Server |
 
-A database server is not required for this stage.
+A MySQL or MariaDB server is required for the books table. Set the `DB_*` values in `.env`, then run `php artisan migrate --seed`.
 
 ---
 
