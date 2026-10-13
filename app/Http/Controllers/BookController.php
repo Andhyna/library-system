@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
@@ -13,10 +14,49 @@ class BookController extends Controller
         return view('books.index', compact('books'));
     }
 
-    public function show($id)
+    public function create()
     {
-        $book = Book::findOrFail($id);
+        return view('books.create');
+    }
 
+    public function store(Request $request)
+    {
+        Book::create($request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'year' => 'required|integer',
+            'stock' => 'required|integer',
+        ]));
+
+        return redirect()->route('books.index');
+    }
+
+    public function edit(Book $book)
+    {
+        return view('books.edit', compact('book'));
+    }
+
+    public function update(Request $request, Book $book)
+    {
+        $book->update($request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'year' => 'required|integer',
+            'stock' => 'required|integer',
+        ]));
+
+        return redirect()->route('books.index');
+    }
+
+    public function destroy(Book $book)
+    {
+        $book->delete();
+
+        return redirect()->route('books.index');
+    }
+
+    public function show(Book $book)
+    {
         return view('books.show', compact('book'));
     }
 }

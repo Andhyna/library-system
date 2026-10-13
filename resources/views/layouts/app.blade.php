@@ -11,10 +11,10 @@
     </header>
 
     <nav>
-        <a href="/dashboard">Dashboard</a>
-        <a href="/books">Books</a>
-        <a href="/categories">Categories</a>
-        <a href="/members">Members</a>
+        <a href="{{ route('home') }}">Dashboard</a>
+        <a href="{{ route('books.index') }}">Books</a>
+        <a href="{{ route('categories.index') }}">Categories</a>
+        <a href="{{ route('members.index') }}">Members</a>
     </nav>
 
     <main>

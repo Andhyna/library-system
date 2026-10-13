@@ -4,6 +4,8 @@
 
 @section('content')
     <h2>Daftar Buku</h2>
+    <p><a href="{{ route('books.create') }}">Tambah Buku</a></p>
+
     <ul>
         @foreach ($books as $book)
             <li>
@@ -11,7 +13,13 @@
                 Judul: {{ $book->title }}<br>
                 Penulis: {{ $book->author }}<br>
                 Tahun Terbit: {{ $book->year }}<br>
-                Stok: {{ $book->stock }}
+                Stok: {{ $book->stock }}<br>
+                <a href="{{ route('books.edit', $book) }}">Edit Buku</a>
+                <form action="{{ route('books.destroy', $book) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus buku ini?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Hapus Buku</button>
+                </form>
             </li>
         @endforeach
     </ul>
