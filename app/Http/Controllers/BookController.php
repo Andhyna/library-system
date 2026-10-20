@@ -21,12 +21,14 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-        Book::create($request->validate([
-            'title' => 'required',
-            'author' => 'required',
-            'year' => 'required|integer',
-            'stock' => 'required|integer',
-        ]));
+        $validated = $request->validate([
+            'title' => 'required|string|min:3|max:255|unique:books,title',
+            'author' => 'required|string|min:3|max:255',
+            'year' => 'required|integer|digits:4|min:1900|max:' . date('Y'),
+            'stock' => 'required|integer|min:0|max:10000',
+        ]);
+
+        Book::create($validated);
 
         return redirect()->route('books.index');
     }
@@ -38,12 +40,14 @@ class BookController extends Controller
 
     public function update(Request $request, Book $book)
     {
-        $book->update($request->validate([
-            'title' => 'required',
-            'author' => 'required',
-            'year' => 'required|integer',
-            'stock' => 'required|integer',
-        ]));
+        $validated = $request->validate([
+            'title' => 'required|string|min:3|max:255|unique:books,title,' . $book->id,
+            'author' => 'required|string|min:3|max:255',
+            'year' => 'required|integer|digits:4|min:1900|max:' . date('Y'),
+            'stock' => 'required|integer|min:0|max:10000',
+        ]);
+
+        $book->update($validated);
 
         return redirect()->route('books.index');
     }
