@@ -30,7 +30,7 @@ class BookController extends Controller
 
         Book::create($validated);
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('success', 'Data buku berhasil disimpan!');
     }
 
     public function edit(Book $book)
@@ -49,14 +49,14 @@ class BookController extends Controller
 
         $book->update($validated);
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('success', 'Data buku berhasil diperbarui!');
     }
 
     public function destroy(Book $book)
     {
         $book->delete();
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('success', 'Data buku berhasil dihapus!');
     }
 
     public function show(Book $book)

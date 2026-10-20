@@ -6,6 +6,10 @@
     <h2>Daftar Buku</h2>
     <p><a href="{{ route('books.create') }}">Tambah Buku</a></p>
 
+    @if (session('success'))
+        <p style="color: green;">{{ session('success') }}</p>
+    @endif
+
     <ul>
         @foreach ($books as $book)
             <li>
