@@ -7,7 +7,7 @@
     <ul>
         @foreach ($categories as $category)
             <li>
-                <strong>{{ $category['nama'] }}</strong>: {{ $category['deskripsi'] }}
+                <strong>{{ $category->name }}</strong>
             </li>
         @endforeach
     </ul>
