@@ -13,11 +13,12 @@
     <ul>
         @foreach ($books as $book)
             <li>
-                ID: {{ $book->id }}<br>
-                Judul: {{ $book->title }}<br>
-                Penulis: {{ $book->author }}<br>
-                Tahun Terbit: {{ $book->year }}<br>
-                Stok: {{ $book->stock }}<br>
+                <h3>{{ $book->title }}</h3>
+                <p>ID: {{ $book->id }}</p>
+                <p>Penulis: {{ $book->author }}</p>
+                <p>Kategori: {{ $book->category?->name ?? 'Belum ada kategori' }}</p>
+                <p>Tahun Terbit: {{ $book->year }}</p>
+                <p>Stok: {{ $book->stock }}</p>
                 <a href="{{ route('books.edit', $book) }}">Edit Buku</a>
                 <form action="{{ route('books.destroy', $book) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus buku ini?');">
                     @csrf
