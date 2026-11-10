@@ -16,6 +16,10 @@
         <a href="{{ route('categories.index') }}">Categories</a>
         <a href="{{ route('members.index') }}">Members</a>
 
+        @can('manage-users')
+            <a href="{{ route('users.index') }}">Kelola Pengguna</a>
+        @endcan
+
         @auth
             <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                 @csrf

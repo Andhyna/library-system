@@ -5,6 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->name('home');
@@ -24,7 +25,12 @@ Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');
 
-Route::middleware('auth')->group(function () {
-    // Route buku yang hanya boleh diakses setelah login.
+Route::middleware(['auth'])->group(function () {
+    // Fitur buku boleh diakses admin dan petugas.
     Route::resource('books', BookController::class);
+});
+
+Route::middleware(['auth', 'can:manage-users'])->group(function () {
+    // Hanya admin yang boleh mengelola akun pengguna.
+    Route::resource('users', UserController::class);
 });

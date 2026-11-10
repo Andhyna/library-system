@@ -20,11 +20,13 @@
                 <p>Tahun Terbit: {{ $book->year }}</p>
                 <p>Stok: {{ $book->stock }}</p>
                 <a href="{{ route('books.edit', $book) }}">Edit Buku</a>
-                <form action="{{ route('books.destroy', $book) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus buku ini?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Hapus Buku</button>
-                </form>
+                @can('delete', $book)
+                    <form action="{{ route('books.destroy', $book) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus buku ini?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Hapus Buku</button>
+                    </form>
+                @endcan
             </li>
         @endforeach
     </ul>
